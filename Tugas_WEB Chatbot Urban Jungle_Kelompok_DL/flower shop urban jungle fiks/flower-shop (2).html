@@ -1,0 +1,2334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Jungle - Toko Bunga Premium</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(180deg, #E8F4F8 0%, #FFF5F7 50%, #F0F9FF 100%);
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #4A90E2 0%, #0066CC 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .nav-links a:hover {
+            transform: translateY(-2px);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            background: linear-gradient(135deg, #FFD5E5 0%, #FFC0D3 100%);
+            padding: 0;
+            position: relative;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            padding: 4rem 2rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            text-align: left;
+            padding-left: 2rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #2C2C2C;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            animation: fadeInLeft 1s;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 2rem;
+            animation: fadeInLeft 1s 0.2s backwards;
+        }
+
+        .hero-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInRight 1s;
+        }
+
+        .tulips-container {
+            font-size: 5rem;
+            line-height: 1.2;
+            text-align: center;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero-nav-dots {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: #FF1493;
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        .dot:hover {
+            background: rgba(255, 20, 147, 0.7);
+        }
+
+        /* Responsive Hero */
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .hero-content {
+                padding-left: 0;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .tulips-container {
+                font-size: 4rem;
+            }
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #FF1493 0%, #FF69B4 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s 0.4s backwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Filter Section */
+        .filter-section {
+            background: #E8F4F8;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            border: 2px solid #4A90E2;
+            background: white;
+            color: #4A90E2;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #4A90E2;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Products Section */
+        .products {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #89CFF0 0%, #FFB6D9 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff6b6b;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: #FF1493;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, #4A90E2 0%, #0066CC 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .add-to-cart:hover {
+            transform: scale(1.05);
+        }
+
+        /* Features Section */
+        .features {
+            background: linear-gradient(135deg, #B0E0E6 0%, #FFE4E1 100%);
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+        }
+
+        .features-alt {
+            background: linear-gradient(135deg, #E0F7FA 0%, #FFF9C4 100%);
+            margin: 0 0 4rem 0;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-text {
+            color: #666;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .testimonial-slider {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 2rem 0;
+            scroll-behavior: smooth;
+        }
+
+        .testimonial-card {
+            min-width: 300px;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-stars {
+            color: #ffd700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            color: #666;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #FFB6D9;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .social-icons a {
+            color: white;
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* About Section */
+        .about-section {
+            background: white;
+            padding: 4rem 2rem;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            margin-bottom: 3rem;
+        }
+
+        .about-text {
+            line-height: 1.8;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #4A90E2 0%, #0066CC 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(180deg, #F8F9FA 0%, #E8F4F8 100%);
+            padding: 4rem 2rem;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            min-width: 50px;
+        }
+
+        .contact-details h4 {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .contact-details p, .contact-details a {
+            color: #666;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .contact-details a:hover {
+            color: #4A90E2;
+        }
+
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .social-btn {
+            padding: 0.7rem 1.2rem;
+            background: linear-gradient(135deg, #4A90E2 0%, #0066CC 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            transition: transform 0.3s;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #E8F4F8;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4A90E2;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #FF1493 0%, #FF69B4 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Map Container */
+        .map-container {
+            margin-top: 3rem;
+        }
+
+        .map-placeholder {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .map-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #4A90E2 0%, #0066CC 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: transform 0.3s;
+        }
+
+        .map-link:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+    <!-- Animated Customer Service Bubble -->
+<div id="chatbot-bubble" onclick="toggleChatbot()">
+    <div class="cs-avatar">
+        <div class="avatar-img">👩‍💼</div>
+        <div class="status-dot"></div>
+    </div>
+</div>
+
+<!-- Chatbot Window -->
+<div id="chatbot-window">
+    <div id="chatbot-header">
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <div class="header-avatar">
+                <div style="font-size: 2rem;">👩‍💼</div>
+                <div class="status-indicator"></div>
+            </div>
+            <div>
+                <div style="font-weight: bold; font-size: 1.1rem;">Customer Service</div>
+                <div style="font-size: 0.85rem; opacity: 0.9; display: flex; align-items: center; gap: 5px;">
+                    <span class="online-dot">🟢</span> Online - AI Assistant
+                </div>
+            </div>
+        </div>
+        <button onclick="toggleChatbot()" class="close-btn">×</button>
+    </div>
+    
+    <div id="chatbot-messages">
+        <div class="bot-message">
+            <div class="message-avatar">
+                <span>👩‍💼</span>
+            </div>
+            <div class="message-content">
+                <div class="message-bubble bot">
+                    <strong>Halo! Selamat datang di Urban Jungle 🌸</strong>
+                    <br><br>
+                    Saya Customer Service AI siap membantu Anda!
+                    <br><br>
+                    Tanyakan tentang:
+                    <br>🌺 Rekomendasi bouquet
+                    <br>💰 Harga & promo
+                    <br>📦 Pengiriman
+                    <br>🎁 Custom design
+                </div>
+                <div class="message-time">Baru saja</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="chatbot-input-area">
+        <button class="attach-btn" title="Quick Actions">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="16"/>
+                <line x1="8" y1="12" x2="16" y2="12"/>
+            </svg>
+        </button>
+        <input type="text" id="chatbot-input" placeholder="Ketik pesan Anda..." onkeypress="handleChatKeyPress(event)">
+        <button id="send-button" onclick="sendChatMessage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<!-- Quick Actions Menu -->
+<div id="quick-actions-menu" style="display: none;">
+    <div class="quick-action" onclick="sendQuickMessage('Rekomendasi bouquet untuk anniversary')">
+        💝 Anniversary
+    </div>
+    <div class="quick-action" onclick="sendQuickMessage('Bouquet untuk ulang tahun')">
+        🎂 Ulang Tahun
+    </div>
+    <div class="quick-action" onclick="sendQuickMessage('Berapa harga bouquet untuk pasangan?')">
+        💰 Cek Harga
+    </div>
+    <div class="quick-action" onclick="sendQuickMessage('Cara pesan dan pengiriman')">
+        📦 Info Pengiriman
+    </div>
+</div>
+
+<style>
+/* ============================================ */
+/* ANIMATED CUSTOMER SERVICE BUBBLE */
+/* ============================================ */
+
+#chatbot-bubble {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    z-index: 9999;
+    transition: transform 0.3s ease;
+}
+
+#chatbot-bubble:hover {
+    transform: scale(1.1);
+}
+
+.cs-avatar {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #FF1493 0%, #FF69B4 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(255, 20, 147, 0.4);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.avatar-img {
+    font-size: 2.2rem;
+    animation: wave 2s ease-in-out infinite;
+}
+
+@keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(15deg); }
+    75% { transform: rotate(-15deg); }
+}
+
+.status-dot {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 16px;
+    height: 16px;
+    background: #00ff00;
+    border: 3px solid white;
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+.chat-bubble-indicator {
+    position: absolute;
+    top: -30px;
+    right: 5px;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 18px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    display: flex;
+    gap: 4px;
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.chat-bubble-indicator span {
+    width: 6px;
+    height: 6px;
+    background: #FF1493;
+    border-radius: 50%;
+    animation: bounce 1.4s ease-in-out infinite;
+}
+
+.chat-bubble-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.chat-bubble-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-8px); }
+}
+
+/* ============================================ */
+/* CHATBOT WINDOW */
+/* ============================================ */
+
+#chatbot-window {
+    position: fixed;
+    bottom: 110px;
+    right: 25px;
+    width: 400px;
+    height: 600px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    display: none;
+    flex-direction: column;
+    z-index: 9998;
+    overflow: hidden;
+    animation: slideUp 0.3s ease-out;
+}
+
+#chatbot-window.active {
+    display: flex;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+#chatbot-header {
+    background: linear-gradient(135deg, #FF1493 0%, #FF69B4 100%);
+    color: white;
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-avatar {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.status-indicator {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 14px;
+    height: 14px;
+    background: #00ff00;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+.close-btn {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.close-btn:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+#chatbot-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: linear-gradient(180deg, #fff5f8 0%, #ffe9f0 100%);
+}
+
+.bot-message, .user-message {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.user-message {
+    flex-direction: row-reverse;
+}
+
+.message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FF1493 0%, #FF69B4 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.user-message .message-avatar {
+    background: linear-gradient(135deg, #4A90E2 0%, #0066CC 100%);
+}
+
+.message-content {
+    max-width: 70%;
+}
+
+.message-bubble {
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    word-wrap: break-word;
+    position: relative;
+}
+
+.message-bubble.bot {
+    background: white;
+    color: #333;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.message-bubble.user {
+    background: linear-gradient(135deg, #4A90E2 0%, #0066CC 100%);
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.message-time {
+    font-size: 0.75rem;
+    color: #999;
+    margin-top: 5px;
+    text-align: right;
+}
+
+.user-message .message-time {
+    text-align: left;
+}
+
+#chatbot-input-area {
+    padding: 15px 18px;
+    background: white;
+    border-top: 1px solid #ffe9f0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.attach-btn {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid #ffe9f0;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FF1493;
+    transition: all 0.3s;
+}
+
+.attach-btn:hover {
+    background: #fff5f8;
+    border-color: #FF1493;
+}
+
+#chatbot-input {
+    flex: 1;
+    padding: 12px 18px;
+    border: 2px solid #ffe9f0;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.3s;
+    font-family: inherit;
+}
+
+#chatbot-input:focus {
+    border-color: #FF1493;
+}
+
+#send-button {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #FF1493 0%, #FF69B4 100%);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+    box-shadow: 0 3px 10px rgba(255, 20, 147, 0.3);
+    color: white;
+}
+
+#send-button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 4px 15px rgba(255, 20, 147, 0.5);
+}
+
+#send-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Quick Actions Menu */
+#quick-actions-menu {
+    position: fixed;
+    bottom: 110px;
+    right: 105px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    padding: 10px;
+    z-index: 9997;
+    min-width: 200px;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.quick-action {
+    padding: 12px 15px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background 0.2s;
+    font-size: 0.9rem;
+    margin: 5px 0;
+}
+
+.quick-action:hover {
+    background: #fff5f8;
+    color: #FF1493;
+}
+
+/* Typing Indicator */
+.typing-indicator {
+    display: flex;
+    gap: 5px;
+    padding: 14px 18px;
+    background: white;
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    width: fit-content;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background: #FF1493;
+    border-radius: 50%;
+    animation: typing 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-10px); }
+}
+
+/* Scrollbar */
+#chatbot-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+#chatbot-messages::-webkit-scrollbar-track {
+    background: #fff5f8;
+}
+
+#chatbot-messages::-webkit-scrollbar-thumb {
+    background: #FF1493;
+    border-radius: 3px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    #chatbot-window {
+        width: calc(100vw - 40px);
+        height: calc(100vh - 140px);
+        right: 20px;
+        bottom: 105px;
+    }
+    
+    #chatbot-bubble {
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+    }
+    
+    .cs-avatar {
+        width: 60px;
+        height: 60px;
+    }
+}
+</style>
+
+<script>
+// ============================================
+// CHATBOT AI - GROQ API INTEGRATION
+// ============================================
+
+const GROQ_API_KEY = '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';
+const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
+
+// Fungsi untuk mendapatkan data keranjang belanja
+function getCartData() {
+    const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
+    
+    if (cartItems.length === 0) {
+        return {
+            isEmpty: true,
+            items: [],
+            totalItems: 0,
+            totalPrice: 0
+        };
+    }
+    
+    let totalPrice = 0;
+    let totalItems = 0;
+    
+    const itemsList = cartItems.map(item => {
+        const price = item.price; // ← sudah number, tidak perlu parsing
+        const quantity = item.quantity || 1;
+        const subtotal = price * quantity;
+        totalPrice += subtotal;
+        totalItems += quantity;
+        
+        return `- ${item.name}: ${quantity} pcs @ Rp ${price.toLocaleString('id-ID')} = Rp ${subtotal.toLocaleString('id-ID')}`;
+    }).join('\n');
+    
+    return {
+        isEmpty: false,
+        items: cartItems,
+        itemsList: itemsList,
+        totalItems: totalItems,
+        totalPrice: totalPrice,
+        formattedTotal: `Rp ${totalPrice.toLocaleString('id-ID')}`
+    };
+}
+
+// System prompt untuk AI
+const systemPrompt = `Kamu adalah Customer Service AI untuk Urban Jungle, toko bunga premium Indonesia.
+
+PRODUK KAMI:
+1. Sunshine Delight - Rp 350.000 (Romantis) - Kombinasi mawar merah, rose peach, dan Gerbera putih, Daisy
+2. Blush Sunshine - Rp 400.000 (Ulang Tahun) - warp pink dengan berbagai bunga cantik dengan bunga matahari
+3. Meadow Whisper - Rp 300.000 (Ulang Tahun) - Sunflower, lily & roses, Rangkaian warna-warni untuk ulang tahun spesial
+4. mix blue wrap - Rp 320.000 (Ulang Tahun) - Sunflower dengan hydrangea
+5. pretty urban - Rp 550.000 (Ulang Tahun) - Bouquet rainbow colorful
+6. Romantic Flora - Rp 390.000 (romantic) - Kombinasi soft colors untuk kesan elegant
+7. Garden Picnic Bouquet - Rp 350.000 (luxury) - Daisy & roses elegant
+8. weave spring - Rp 200.000 (birthday) - Mix yellow flower & lily
+9. Pastel Garden Symphony - Rp 480.000 (Romantic) - mawar krem dan oranye, dahlia pink, anthurium pink, calla lily putih, anggrek (phalaenopsis & oncidium kuning), anyelir/lisianthus ungu muda, freesia biru muda, wax flower putih
+10. Azure Sunshine Bloom - Rp 390.000 (luxury) - mawar oranye, anggrek bulan putih (phalaenopsis), hydrangea biru, bunga biru dekoratif serta daun ruscus dan foliage hijau sebagai filler
+11. Pastel Whimsy Garden - Rp 500.000 (Premium) - Rangkaian bunga pastel yang ceria dan elegan, memadukan mawar, anggrek, calla lily, dahlia, anthurium, dan bunga musiman berwarna lembut
+12. Rosaline - Rp 370.000 (birthday) - Bouquet mawar merah dipadukan mawar putih cantik
+13. Blue Sunrise Harmony - Rp 460.000 (luxury) - Perpaduan mawar oranye yang hangat dengan sentuhan biru lembut dari hydrangea dan bunga dekoratif, dilengkapi anggrek bulan putih
+14. Golden Ruby Embrace - Rp 360.000 (romantic) - Rangkaian mawar merah yang romantis berpadu mawar kuning keemasan dan aksen eucalyptus segar
+15. Daisy Delight - Rp 310.000 (birthday) - Bunga daisy ceria untuk hadiah spesial
+16. Buket mawar merah - Rp 220.000 (luxury) - Full mawar merah fresh
+
+INFORMASI TOKO:
+📍 Alamat: Jl. Bunga Raya No. 123, Jakarta Selatan, 12345 Indonesia
+⏰ Jam Operasional:
+   • Senin - Sabtu: 08.00 - 20.00
+   • Minggu: 09.00 - 18.00
+
+LAYANAN:
+✅ Pengiriman same-day Jakarta
+✅ Bunga 100% segar dari kebun
+✅ Free gift wrapping & greeting card
+✅ Custom design available
+✅ WhatsApp: +62 812-3456-7890
+
+CARA JAWAB:
+- Ramah, profesional, dan helpful
+- Maksimal 4-5 baris (singkat!)
+- Pakai emoji yang relevan
+- Sebutkan nama produk & harga kalau relevan
+- Untuk pertanyaan alamat atau jam buka, berikan info lengkap
+- Untuk pertanyaan keranjang, gunakan data yang diberikan dalam format [CART_DATA]
+- Akhiri dengan ajakan bertindak (pesan/tanya lagi)
+
+CONTOH BAGUS:
+"Untuk anniversary, saya rekomendasikan Golden Ruby Embrace (Rp 360k) 🌹 atau Garden Picnic (Rp 350k) 💐 yang super romantis! Mau langsung pesan? Chat WA +62 812-3456-7890 😊"
+
+"Kami buka Senin-Sabtu jam 08.00-20.00 dan Minggu 09.00-18.00 🕐 Lokasi kami di Jl. Bunga Raya No. 123, Jakarta Selatan. Ada yang bisa saya bantu? 😊"`;
+
+let conversationHistory = [
+    { role: 'system', content: systemPrompt }
+];
+
+// Toggle chatbot
+function toggleChatbot() {
+    const chatWindow = document.getElementById('chatbot-window');
+    chatWindow.classList.toggle('active');
+    
+    if (chatWindow.classList.contains('active')) {
+        document.getElementById('chatbot-input').focus();
+    }
+}
+
+// Get current time
+function getCurrentTime() {
+    const now = new Date();
+    return now.getHours().toString().padStart(2, '0') + ':' + 
+           now.getMinutes().toString().padStart(2, '0');
+}
+
+// Send message
+async function sendChatMessage() {
+    const input = document.getElementById('chatbot-input');
+    const message = input.value.trim();
+    
+    if (message === '') return;
+    
+    // Add user message
+    addChatMessage(message, 'user');
+    input.value = '';
+    
+    // Disable input
+    const sendBtn = document.getElementById('send-button');
+    input.disabled = true;
+    sendBtn.disabled = true;
+    
+    // Show typing
+    showTypingIndicator();
+    
+    try {
+        // Call Groq API
+        const response = await callGroqAPI(message);
+        
+        // Remove typing
+        removeTypingIndicator();
+        
+        // Add bot response
+        addChatMessage(response, 'bot');
+        
+    } catch (error) {
+        console.error('Error:', error);
+        removeTypingIndicator();
+        
+        // Fallback response
+        addChatMessage('Maaf, saya sedang mengalami gangguan. Untuk bantuan segera, silakan hubungi WhatsApp kami di +62 812-3456-7890 😊', 'bot');
+    }
+    
+    // Enable input
+    input.disabled = false;
+    sendBtn.disabled = false;
+    input.focus();
+}
+
+// Call Groq API
+async function callGroqAPI(userMessage) {
+    // Dapatkan data keranjang
+    const cartData = getCartData();
+    
+    // Buat konteks tambahan jika ada pertanyaan tentang keranjang
+    let contextMessage = userMessage;
+    const cartKeywords = ['keranjang', 'cart', 'belanja', 'pesanan', 'total', 'harga'];
+    const isCartQuestion = cartKeywords.some(keyword => userMessage.toLowerCase().includes(keyword));
+    
+    if (isCartQuestion) {
+        if (cartData.isEmpty) {
+            contextMessage = `${userMessage}\n\n[CART_DATA: Keranjang belanja kosong - belum ada item]`;
+        } else {
+            contextMessage = `${userMessage}\n\n[CART_DATA: 
+Total Item: ${cartData.totalItems} pcs
+Detail Pesanan:
+${cartData.itemsList}
+Total Harga: ${cartData.formattedTotal}]`;
+        }
+    }
+    
+    // Add user message to history
+    conversationHistory.push({
+        role: 'user',
+        content: contextMessage
+    });
+    
+    const response = await fetch(GROQ_API_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${GROQ_API_KEY}`
+        },
+        body: JSON.stringify({
+            model: 'llama-3.3-70b-versatile',
+            messages: conversationHistory,
+            temperature: 0.7,
+            max_tokens: 300,
+            top_p: 0.9
+        })
+    });
+    
+    if (!response.ok) {
+        const errorData = await response.json();
+        console.error('API Error:', errorData);
+        throw new Error('API request failed');
+    }
+    
+    const data = await response.json();
+    const assistantMessage = data.choices[0].message.content;
+    
+    // Add assistant response to history
+    conversationHistory.push({
+        role: 'assistant',
+        content: assistantMessage
+    });
+    
+    // Keep only last 10 messages to avoid token limit
+    if (conversationHistory.length > 11) {
+        conversationHistory = [
+            conversationHistory[0], // Keep system prompt
+            ...conversationHistory.slice(-10)
+        ];
+    }
+    
+    return assistantMessage;
+}
+
+// Add message to chat
+function addChatMessage(text, sender) {
+    const container = document.getElementById('chatbot-messages');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = sender === 'user' ? 'user-message' : 'bot-message';
+    
+    const formattedText = text.replace(/\n/g, '<br>');
+    const time = getCurrentTime();
+    
+    if (sender === 'user') {
+        messageDiv.innerHTML = `
+            <div class="message-content">
+                <div class="message-bubble user">${formattedText}</div>
+                <div class="message-time">${time}</div>
+            </div>
+            <div class="message-avatar">
+                <span>✨</span>
+            </div>
+        `;
+    } else {
+        messageDiv.innerHTML = `
+            <div class="message-avatar">
+                <span>👩‍💼</span>
+            </div>
+            <div class="message-content">
+                <div class="message-bubble bot">${formattedText}</div>
+                <div class="message-time">${time}</div>
+            </div>
+        `;
+    }
+    
+    container.appendChild(messageDiv);
+    container.scrollTop = container.scrollHeight;
+}
+
+// Typing indicator
+function showTypingIndicator() {
+    const container = document.getElementById('chatbot-messages');
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'bot-message';
+    typingDiv.id = 'typing-indicator';
+    typingDiv.innerHTML = `
+        <div class="message-avatar">
+            <span>👩‍💼</span>
+        </div>
+        <div class="message-content">
+            <div class="typing-indicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        </div>
+    `;
+    container.appendChild(typingDiv);
+    container.scrollTop = container.scrollHeight;
+}
+
+function removeTypingIndicator() {
+    const indicator = document.getElementById('typing-indicator');
+    if (indicator) indicator.remove();
+}
+
+// Handle Enter key
+function handleChatKeyPress(event) {
+    if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        sendChatMessage();
+    }
+}
+
+// Quick message
+function sendQuickMessage(message) {
+    const input = document.getElementById('chatbot-input');
+    input.value = message;
+    document.getElementById('quick-actions-menu').style.display = 'none';
+    sendChatMessage();
+}
+
+// Toggle quick actions
+document.querySelector('.attach-btn')?.addEventListener('click', () => {
+    const menu = document.getElementById('quick-actions-menu');
+    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+});
+
+// Close quick actions when clicking outside
+document.addEventListener('click', (e) => {
+    const menu = document.getElementById('quick-actions-menu');
+    const attachBtn = document.querySelector('.attach-btn');
+    if (menu && !menu.contains(e.target) && e.target !== attachBtn && !attachBtn?.contains(e.target)) {
+        menu.style.display = 'none';
+    }
+});
+</script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <span>🌼</span>
+                <span>Urban Jungle</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Produk</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+            <div class="cart-icon" onclick="toggleCart()">
+                🛒
+                <span class="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Special Smells<br>Special Bouquets</h1>
+                <p class="hero-subtitle">Hadirkan keindahan dan kebahagiaan dengan koleksi bunga premium kami</p>
+                <button class="cta-button" onclick="scrollToProducts()">EXPLORE NOW</button>
+            </div>
+            <div class="hero-image">
+                <div class="tulips-container">
+                    🌷🌷🌷<br>
+                    🤍🌷🤍<br>
+                    🌷🤍🌷
+                </div>
+            </div>
+        </div>
+        <!-- Navigation Dots -->
+        <div class="hero-nav-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <h2 style="margin-bottom: 1rem;">Kategori Bunga</h2>
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterProducts('all')">Semua</button>
+            <button class="filter-btn" onclick="filterProducts('romantic')">Romantis</button>
+            <button class="filter-btn" onclick="filterProducts('birthday')">Ulang Tahun</button>
+            <button class="filter-btn" onclick="filterProducts('congratulation')">Ucapan</button>
+            <button class="filter-btn" onclick="filterProducts('luxury')">Premium</button>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <h2 class="section-title">Koleksi Bouquet Premium Kami</h2>
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be dynamically loaded here -->
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title" style="color: #333; margin-bottom: 2rem;">Mengapa Memilih Kami?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🌺</div>
+                <h3 class="feature-title">Bunga Segar</h3>
+                <p class="feature-text">100% bunga segar langsung dari kebun pilihan</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚚</div>
+                <h3 class="feature-title">Pengiriman Cepat</h3>
+                <p class="feature-text">Pengiriman same-day untuk area tertentu</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3 class="feature-title">Custom Design</h3>
+                <p class="feature-text">Bisa request desain sesuai keinginan</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💳</div>
+                <h3 class="feature-title">Pembayaran Mudah</h3>
+                <p class="feature-text">Berbagai metode pembayaran tersedia</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <h2 class="section-title">Testimoni Pelanggan</h2>
+        <div class="testimonial-slider">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Bunganya cantik banget dan segar! Pacar saya sangat senang. Pasti order lagi!"</p>
+                <p class="testimonial-author">- Budi, Jakarta</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Pelayanan cepat, packaging rapih, dan bunganya awet sampai seminggu!"</p>
+                <p class="testimonial-author">- Siti, Bandung</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Harga terjangkau dengan kualitas premium. Recommended banget!"</p>
+                <p class="testimonial-author">- Andi, Surabaya</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Features Section -->
+    <section class="features features-alt">
+        <h2 class="section-title" style="color: #333; margin-bottom: 2rem;">Keunggulan Urban Jungle</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎁</div>
+                <h3 class="feature-title">Gift Wrapping</h3>
+                <p class="feature-text">Packaging cantik dan mewah gratis untuk setiap pembelian</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⏰</div>
+                <h3 class="feature-title">24/7 Service</h3>
+                <p class="feature-text">Customer service siap membantu kapan saja</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💯</div>
+                <h3 class="feature-title">Quality Guarantee</h3>
+                <p class="feature-text">Jaminan kualitas atau uang kembali 100%</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📝</div>
+                <h3 class="feature-title">Greeting Card</h3>
+                <p class="feature-text">Kartu ucapan gratis dengan tulisan personal</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3 class="feature-title">Nationwide Delivery</h3>
+                <p class="feature-text">Pengiriman ke seluruh Indonesia</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📸</div>
+                <h3 class="feature-title">Photo Before Send</h3>
+                <p class="feature-text">Foto bouquet sebelum dikirim untuk konfirmasi</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-content">
+                <h2 class="section-title">Tentang Urban Jungle</h2>
+                <div class="about-text">
+                    <p>🌼<strong>Urban Jungle</strong> adalah toko bunga premium yang berdiri sejak 2020, hadir untuk memberikan pengalaman berbeda dalam memilih dan mengirimkan bunga segar berkualitas tinggi.</p>
+                    
+                    <p>Kami percaya bahwa setiap momen spesial layak dirayakan dengan keindahan bunga. Dari anniversary, ulang tahun, hingga ucapan selamat atas pencapaian, kami siap menghadirkan rangkaian bunga yang sempurna untuk Anda.</p>
+                    
+                    <h3 style="color: #4A90E2; margin-top: 2rem; margin-bottom: 1rem;">🎯 Visi Kami</h3>
+                    <p>Menjadi toko bunga terdepan di Indonesia yang menghadirkan inovasi dalam desain bouquet dengan tetap mempertahankan kualitas dan kesegaran bunga.</p>
+                    
+                    <h3 style="color: #FF1493; margin-top: 2rem; margin-bottom: 1rem;">💝 Misi Kami</h3>
+                    <ul style="line-height: 2; color: #555;">
+                        <li>✅ Menyediakan bunga segar berkualitas premium</li>
+                        <li>✅ Memberikan pelayanan terbaik kepada pelanggan</li>
+                        <li>✅ Menghadirkan desain bouquet yang unik dan modern</li>
+                        <li>✅ Pengiriman tepat waktu dan aman</li>
+                    </ul>
+
+                    <h3 style="color: #4A90E2; margin-top: 2rem; margin-bottom: 1rem;">🌟 Kenapa Memilih Kami?</h3>
+                    <p>Dengan tim florist berpengalaman lebih dari 10 tahun, kami memahami betul bagaimana menciptakan rangkaian bunga yang tidak hanya indah dipandang, tetapi juga bermakna. Setiap bouquet kami dibuat dengan penuh perhatian dan cinta.</p>
+                    
+                    <p style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #E8F4F8 0%, #FFE4E1 100%); border-radius: 15px; border-left: 5px solid #FF1493;">
+                        <strong>"Bunga adalah cara terbaik untuk mengungkapkan perasaan tanpa kata-kata"</strong><br>
+                        <em style="color: #666;">- Urban Jungle Team</em>
+                    </p>
+                </div>
+            </div>
+            <div class="about-stats">
+                <div class="stat-card">
+                    <div class="stat-number">5000+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Jenis Bunga</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Fresh Guarantee</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Customer Service</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 3rem; font-size: 1.1rem;">
+                Ada pertanyaan atau ingin custom bouquet? Kami siap membantu Anda!
+            </p>
+            
+            <div class="contact-grid">
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <h3 style="color: #4A90E2; margin-bottom: 1.5rem;">📍 Informasi Kontak</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <a href="mailto:info@urbanjungle.com">info@urbanjungle.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-details">
+                            <h4>WhatsApp</h4>
+                            <a href="https://wa.me/6281234567890" target="_blank">+62 812-3456-7890</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h4>Telepon</h4>
+                            <a href="tel:+622112345678">(021) 1234-5678</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">🏢</div>
+                        <div class="contact-details">
+                            <h4>Alamat</h4>
+                            <p>Jl. Bunga Raya No. 123<br>Jakarta Selatan, 12345<br>Indonesia</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">⏰</div>
+                        <div class="contact-details">
+                            <h4>Jam Operasional</h4>
+                            <p>Senin - Sabtu: 08.00 - 20.00<br>Minggu: 09.00 - 18.00</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem;">
+                        <h4 style="margin-bottom: 1rem;">Follow Us:</h4>
+                        <div class="social-links">
+                            <a href="#" class="social-btn">📘 Facebook</a>
+                            <a href="#" class="social-btn">📷 Instagram</a>
+                            <a href="#" class="social-btn">🐦 Twitter</a>
+                            <a href="#" class="social-btn">💼 LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h3 style="color: #FF1493; margin-bottom: 1.5rem;">✉️ Kirim Pesan</h3>
+                    <form id="contactForm" onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Nama Lengkap *</label>
+                            <input type="text" id="name" name="name" required placeholder="Masukkan nama Anda">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required placeholder="contoh@email.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Nomor Telepon *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="08xx-xxxx-xxxx">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subjek</label>
+                            <select id="subject" name="subject">
+                                <option value="order">Pertanyaan Order</option>
+                                <option value="custom">Custom Bouquet</option>
+                                <option value="complaint">Keluhan</option>
+                                <option value="other">Lainnya</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Pesan *</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Tuliskan pesan Anda di sini..."></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Kirim Pesan 📤</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Map Placeholder -->
+            <div class="map-container">
+                <h3 style="text-align: center; margin-bottom: 1.5rem; color: #333;">📍 Lokasi Kami</h3>
+                <div class="map-placeholder">
+                    <p style="font-size: 3rem; margin-bottom: 1rem;">🗺️</p>
+                    <p>Jl. Bunga Raya No. 123, Jakarta Selatan</p>
+                    <a href="https://maps.google.com" target="_blank" class="map-link">Buka di Google Maps →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Urban Jungle</h3>
+                <p>Toko bunga terpercaya dengan rangkaian bunga segar dan berkualitas untuk setiap momen spesial Anda.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Produk</a></li>
+                    <li><a href="#about">Tentang Kami</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Kontak</h3>
+                <p>📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bfd6d1d9d0ffcacdddded1d5cad1d8d3da91dcd0d2">[email&#160;protected]</a></p>
+                <p>📱 +62 812-3456-7890</p>
+                <p>📍 Jakarta, Indonesia</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#">📘</a>
+                    <a href="#">📷</a>
+                    <a href="#">🐦</a>
+                    <a href="#">💬</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Cart -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="toggleCart()">×</span>
+            <h2>Keranjang Belanja</h2>
+            <div id="cartItems" style="margin: 2rem 0;">
+                <p style="text-align: center; color: #666;">Keranjang masih kosong</p>
+            </div>
+            <div style="border-top: 2px solid #eee; padding-top: 1rem;">
+                <p style="font-size: 1.3rem; font-weight: bold;">Total: <span id="cartTotal">Rp 0</span></p>
+                <button class="cta-button" style="width: 100%; margin-top: 1rem;" onclick="checkout()">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Products Data
+        const products = [
+            {
+                id: 1,
+                name: "Sunshine Delight",
+                description: "Kombinasi mawar merah, rose peach, dan Gerbera putih, Daisy",
+                price: 350000,
+                category: "romantic",
+                badge: "Best Seller",
+                image: "blassom.jpg" 
+            },
+            {
+                id: 2,
+                name: "Blush Sunshine",
+                description: "warp pink dengan berbagai bunga cantik dengan bunga matahari",
+                price: 400000,
+                category: "birthday",
+                badge: "Popular",
+                image: "Blush Sunshine.jpg" 
+            },
+            {
+                id: 3,
+                name: "Meadow Whisper",
+                description: "Rangkaian warna-warni untuk ulang tahun spesial",
+                price: 300000,
+                category: "birthday",
+                badge: "New",
+                image: "Meadow Whisper.jpg" 
+            },
+            {
+                id: 4,
+                name: "mix blue wrap",
+                description: "Bunga lily dan carnation untuk ucapan selamat",
+                price: 320000,
+                category: "Ulang Tahun",
+                image: "mix blue wrap.jpg" 
+            },
+            {
+                id: 5,
+                name: "pretty urban",
+                description: "Bouquet rainbow colorful",
+                price: 550000,
+                category: "Ulang Tahun",
+                badge: "Premium",
+                image: "pretty urban.jpg"
+            },
+            {
+                id: 6,
+                name: "Romantic Flora",
+                description: "Kombinasi soft colors untuk kesan elegant",
+                price: 380000,
+                category: "romantic",
+                image: "Romantic Flora.jpg" 
+            },
+            {
+                id: 7,
+                name: "Garden Picnic Bouquet",
+                description: "Fresh tulip import dengan warna cerah",
+                price: 450000,
+                category: "luxury",
+                badge: "Limited",
+                image: "spring serenade.jpg" 
+            },
+            {
+                id: 8,
+                name: "weave spring",
+                description: "Mix yellow flower",
+                price: 200000,
+                category: "birthday",
+                image: "@小红书.jpg" 
+            },
+            {
+                id: 9,
+                name: "Pastel Garden Symphony",
+                description: "mawar krem dan oranye, dahlia pink, anthurium pink, calla lily putih, anggrek (phalaenopsis & oncidium kuning), anyelir/lisianthus ungu muda, freesia biru muda, wax flower putih,",
+                price: 480000,
+                category: "romantic",
+                badge: "Trending",
+                image: "download (4).jpg" 
+            },
+            {
+                id: 10,
+                name: "Azure Sunshine Bloom",
+                description: "mawar oranye, anggrek bulan putih (phalaenopsis), hydrangea biru, bunga biru dekoratif serta daun ruscus dan foliage hijau sebagai filler",
+                price: 390000,
+                category: "luxury",
+                image: "download (6).jpg" 
+            },
+            {
+                id: 11,
+                name: "Pastel Whimsy Garden",
+                description: "Rangkaian bunga pastel yang ceria dan elegan, memadukan mawar, anggrek, calla lily, dahlia, anthurium, dan bunga musiman berwarna lembut",
+                price: 500000,
+                category: "congratulation",
+                image: "download (3).jpg" 
+            },
+            {
+                id: 12,
+                name: "Rosaline",
+                description: "Bouquet mawar merah dipadukan mawar putih cantik",
+                price: 370000,
+                category: "birthday",
+                badge: "Popular",
+                image: "Rosaline.jpg" 
+            },
+            {
+                id: 13,
+                name: "Blue Sunrise Harmony",
+                description: "Perpaduan mawar oranye yang hangat dengan sentuhan biru lembut dari hydrangea dan bunga dekoratif, dilengkapi anggrek bulan putih",
+                price: 460000,
+                category: "luxury",
+                image: "download (7).jpg" 
+            },
+            {
+                id: 14,
+                name: "Golden Ruby Embrace",
+                description: "Rangkaian mawar merah yang romantis berpadu mawar kuning keemasan dan aksen eucalyptus segar",
+                price: 360000,
+                category: "romantic",
+                image: "download (8).jpg" 
+            },
+            {
+                id: 15,
+                name: "Daisy Delight",
+                description: "Bunga daisy ceria untuk hadiah spesial",
+                price: 310000,
+                category: "birthday",
+                image: "flowers.jpg" 
+            },
+            {
+                id: 16,
+                name: "Buket mawar merah",
+                description: "Full mawar merah fresh",
+                price: 220000,
+                category: "luxury",
+                badge: "Exclusive",
+                image: "buket mawar fresh.png" 
+            }
+        ];
+
+        let cart = [];
+        let currentFilter = 'all';
+
+        // Load products
+        function loadProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+            
+            const filteredProducts = currentFilter === 'all' 
+                ? products 
+                : products.filter(p => p.category === currentFilter);
+
+            filteredProducts.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card fade-in';
+                card.innerHTML = `
+                    <div class="product-image floating">
+                       <img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;">
+                        ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <p class="product-price">Rp ${product.price.toLocaleString('id-ID')}</p>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">
+                            Tambah ke Keranjang
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter products
+        function filterProducts(category) {
+            currentFilter = category;
+            loadProducts();
+            
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+         
+        // Initialize cart from localStorage
+        cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Add to cart
+         function addToCart(productId) {
+         const product = products.find(p => p.id === productId);
+         const existingItem = cart.find(item => item.id === productId);
+    
+         if (existingItem) {
+         existingItem.quantity++;
+         } else {
+         cart.push({...product, quantity: 1});
+         }
+    
+         // Simpan ke localStorage
+         localStorage.setItem('cart', JSON.stringify(cart));
+    
+         updateCartUI();
+         showNotification('Produk ditambahkan ke keranjang!');
+         }
+
+         // Update cart UI
+         function updateCartUI() {
+         const cartCount = document.querySelector('.cart-count');
+         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+         cartCount.textContent = totalItems;
+    
+         const cartItems = document.getElementById('cartItems');
+         const cartTotal = document.getElementById('cartTotal');
+    
+         if (cart.length === 0) {
+         cartItems.innerHTML = '<p style="text-align: center; color: #666;">Keranjang masih kosong</p>';
+         cartTotal.textContent = 'Rp 0';
+         return;
+         }
+    
+         let itemsHTML = '';
+         let total = 0;
+    
+         cart.forEach(item => {
+         const itemTotal = item.price * item.quantity;
+         total += itemTotal;
+         itemsHTML += `
+            <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid #eee;">
+                <div>
+                    <strong>${item.name}</strong>
+                    <p style="color: #666; font-size: 0.9rem;">Jumlah: ${item.quantity}</p>
+                </div>
+                <div style="text-align: right;">
+                    <p style="font-weight: bold;">Rp ${itemTotal.toLocaleString('id-ID')}</p>
+                </div>
+            </div>
+          `;
+         });
+    
+         cartItems.innerHTML = itemsHTML;
+         cartTotal.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+         }
+
+        // Toggle cart modal
+         function toggleCart() {
+         const modal = document.getElementById('cartModal');
+         modal.classList.toggle('active');
+         }
+
+        // Checkout
+         function checkout() {
+         if (cart.length === 0) {
+         alert('Keranjang masih kosong!');
+         return;
+         }
+         alert('Terima kasih! Pesanan Anda akan segera diproses. Tim kami akan menghubungi Anda segera.');
+         cart = [];
+    
+    // Hapus dari localStorage
+    localStorage.removeItem('cart');
+    
+    updateCartUI();
+    toggleCart();
+}
+
+// Show notification
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: #4CAF50;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        z-index: 3000;
+        animation: fadeInUp 0.5s;
+    `;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
+    // Load cart on page load
+    document.addEventListener('DOMContentLoaded', function() {
+    updateCartUI();
+});
+
+        // Scroll to products
+        function scrollToProducts() {
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Handle contact form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Format pesan untuk WhatsApp
+            const waMessage = `*Pesan Baru dari Website*%0A%0A*Nama:* ${name}%0A*Email:* ${email}%0A*Telepon:* ${phone}%0A*Subjek:* ${subject}%0A*Pesan:*%0A${message}`;
+            
+            // Buka WhatsApp
+            const waNumber = "6281234567890"; // Ganti dengan nomor WA Anda
+            window.open(`https://wa.me/${waNumber}?text=${waMessage}`, '_blank');
+            
+            // Show notification
+            showNotification('Terima kasih! Pesan Anda akan dikirim via WhatsApp.');
+            
+            // Reset form
+            document.getElementById('contactForm').reset();
+        }
+
+        // Initialize
+        loadProducts();
+    </script>
+</body>
+</html>
